@@ -2,8 +2,8 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 
 import { UnsubscribeComponent } from 'src/app/shared/helpers/unsubscribe.component';
-import { Address } from 'src/app/shared/models/address.model';
-import { AddressService } from 'src/app/shared/services/address.service';
+import { Address } from 'src/app/components/address/address.model';
+import { AddressService } from 'src/app/components/address/address.service';
 
 @Component({
   selector: 'app-address',
@@ -19,69 +19,48 @@ export class AddressComponent extends UnsubscribeComponent implements OnInit, Af
   loading: boolean = false;
   currentEditIndex: number = -1;
   currentEditRow: Address;
-  currentEditField: string = "";
+  currentEditField: string = '';
+  isEditing: boolean = false;
 
   constructor(private addressService: AddressService, private changeDetectorRefs: ChangeDetectorRef) {
     super();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getAddresses();
   }
 
   //it was needed to increase performance to render all the addresses
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
   //function to get all addresses and also specifies, sorting, paginator, and so forth.
-  getAddresses() {
+  getAddresses(): void {
     this.loading = true;
     this.addressService.get().subscribe(addresses => {
-      this.dataSource.data = this.mapToAddress(addresses);
+      this.dataSource.data = addresses;
       this.loading = false;
     });
   }
 
   //filter data by the specific criteria typed by user
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  //function to map address into an object.
-  //returns an array of addresses needed to be rendered in the table afterwards.
-  private mapToAddress(text: string): Address[] {
-    let temp: Address[] = [];
-
-    text.split('\n').forEach((line, index) => {
-      let address = new Address();
-      let commaSplits = line.split(',');
-      let streetInfo = commaSplits[0].split(' ');
-      let stateAndZip = commaSplits[2].split(' ');
-      address.Id = index + 1;
-      address.streetNumber = streetInfo[0].trim();
-      address.street = streetInfo.slice(1).join(' ');
-      address.city = commaSplits[1].trim();
-      address.state = stateAndZip[1].trim();
-      address.zip = stateAndZip[2].trim();
-      temp.push(address);
-    });
-
-    return temp;
-  }
-
   //function to enable input according to the selected cell
-  enableField(element: Address, index: number, fieldName: string) {
+  enableField(element: Address, index: number, fieldName: string): void {
     this.currentEditField = fieldName;
     this.currentEditIndex = index;
   }
 
   //executed function on blur.
-  update(index: number, element: Address) {
+  update(index: number, element: Address): void {
     this.currentEditRow = Object.assign({}, element);
     this.currentEditIndex = -1;
-    this.currentEditField = "";
+    this.currentEditField = '';
 
     /*
 

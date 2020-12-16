@@ -1,3 +1,7 @@
+<div class="header-container">
+  <button mat-raised-button color="primary" routerLink="/lazy-1">Lazy Loaded Component 1</button>
+</div>
+
 <div class="table-container mat-elevation-z8">
   <div class="filter-container">
     <mat-form-field>
@@ -11,11 +15,13 @@
     <ng-container matColumnDef="streetNumber">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Street Number </th>
       <td mat-cell (click)="enableField(element, i, 'streetNumber')" *matCellDef="let element, let i = index">
-        <span *ngIf="currentEditField != 'streetNumber' || currentEditIndex != i">{{element.streetNumber}}</span>
-
-        <mat-form-field *ngIf="currentEditField == 'streetNumber' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
-					<input matInput (blur)="update(i, element)" placeholder="Street Number" [value]="element.streetNumber" [(ngModel)]="element.streetNumber">
-				</mat-form-field>
+        <app-editable-cell
+          [element]="element"
+          [property]="'streetNumber'"
+          [placeholder]="'Street Number'"
+          [isEditing]="(currentEditField == 'streetNumber' && currentEditIndex == i)"
+          (cellLostFocus)="update(i, element)">
+        </app-editable-cell>
       </td>
     </ng-container>
 
@@ -23,11 +29,13 @@
     <ng-container matColumnDef="street">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Street </th>
       <td mat-cell (click)="enableField(element, i, 'street')" *matCellDef="let element, let i = index">
-        <span *ngIf="currentEditField != 'street' || currentEditIndex != i">{{element.street}}</span>
-
-        <mat-form-field *ngIf="currentEditField == 'street' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
-					<input matInput (blur)="update(i, element)" placeholder="Street" [value]="element.street" [(ngModel)]="element.street">
-				</mat-form-field>
+        <app-editable-cell
+          [element]="element"
+          [property]="'street'"
+          [placeholder]="'Street'"
+          [isEditing]="(currentEditField == 'street' && currentEditIndex == i)"
+          (cellLostFocus)="update(i, element)">
+        </app-editable-cell>
       </td>
     </ng-container>
 
@@ -35,11 +43,13 @@
     <ng-container matColumnDef="city">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
       <td mat-cell (click)="enableField(element, i, 'city')" *matCellDef="let element, let i = index">
-        <span *ngIf="currentEditField != 'city' || currentEditIndex != i">{{element.city}}</span>
-
-        <mat-form-field *ngIf="currentEditField == 'city' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
-					<input matInput (blur)="update(i, element)" placeholder="City" [value]="element.city" [(ngModel)]="element.city">
-				</mat-form-field>
+        <app-editable-cell
+          [element]="element"
+          [property]="'city'"
+          [placeholder]="'City'"
+          [isEditing]="(currentEditField == 'city' && currentEditIndex == i)"
+          (cellLostFocus)="update(i, element)">
+        </app-editable-cell>
       </td>
     </ng-container>
 
@@ -47,11 +57,13 @@
     <ng-container matColumnDef="state">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
       <td mat-cell (click)="enableField(element, i, 'state')" *matCellDef="let element, let i = index">
-        <span *ngIf="currentEditField != 'state' || currentEditIndex != i">{{element.state}}</span>
-
-        <mat-form-field *ngIf="currentEditField == 'state' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
-					<input matInput (blur)="update(i, element)" placeholder="State" [value]="element.state" [(ngModel)]="element.state">
-				</mat-form-field>
+        <app-editable-cell
+          [element]="element"
+          [property]="'State'"
+          [placeholder]="'state'"
+          [isEditing]="(currentEditField == 'state' && currentEditIndex == i)"
+          (cellLostFocus)="update(i, element)">
+        </app-editable-cell>
       </td>
     </ng-container>
 
@@ -59,11 +71,13 @@
     <ng-container matColumnDef="zip">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Zip </th>
       <td mat-cell (click)="enableField(element, i, 'zip')" *matCellDef="let element, let i = index">
-        <span *ngIf="currentEditField != 'zip' || currentEditIndex != i">{{element.zip}}</span>
-
-        <mat-form-field *ngIf="currentEditField == 'zip' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
-					<input matInput (blur)="update(i, element)" placeholder="Zip" [value]="element.zip" [(ngModel)]="element.zip">
-				</mat-form-field>
+        <app-editable-cell
+          [element]="element"
+          [property]="'zip'"
+          [placeholder]="'Zip'"
+          [isEditing]="(currentEditField == 'zip' && currentEditIndex == i)"
+          (cellLostFocus)="update(i, element)">
+        </app-editable-cell>
       </td>
     </ng-container>
 

@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "http://0f1c6e64.s3.amazonaws.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {"^/api" : ""}
+  }
+}

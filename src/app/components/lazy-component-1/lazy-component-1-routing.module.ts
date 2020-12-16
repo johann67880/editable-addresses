@@ -1,9 +1,9 @@
-import { AddressComponent } from './address.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { LazyComponent1Component } from './lazy-component-1.component';
 
 const routes: Routes = [
-  { path: '', component: AddressComponent }
+  { path: '', component: LazyComponent1Component }
 ];
 
 @NgModule({
@@ -11,4 +11,4 @@ const routes: Routes = [
   imports:[RouterModule.forChild(routes)]
 })
 
-export class AddressRoutingModule{ }
+export class LazyComponent1RoutingModule{ }

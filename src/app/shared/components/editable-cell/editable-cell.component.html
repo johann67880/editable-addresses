@@ -1,0 +1,11 @@
+<div>
+  <span *ngIf="!isEditing">{{element[property]}}</span>
+
+  <mat-form-field *ngIf="isEditing" autofocus [style.width.%]="80" floatLabel="never">
+    <input matInput #test
+      (focusout)="onBlur(event$)"
+      placeholder="placeholder"
+      [value]="element[property]" 
+      [(ngModel)]="element[property]">
+  </mat-form-field>
+</div>

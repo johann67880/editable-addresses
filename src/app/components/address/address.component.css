@@ -17,3 +17,8 @@ table {
   padding-right: 20px;
   padding-left: 20px;
 }
+
+.header-container {
+  padding-left: 50px;
+  padding-top: 20px;
+}
