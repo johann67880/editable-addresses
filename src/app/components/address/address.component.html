@@ -1,0 +1,74 @@
+<div class="table-container mat-elevation-z8">
+  <div class="filter-container">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- Street Number Column -->
+    <ng-container matColumnDef="streetNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Street Number </th>
+      <td mat-cell (click)="enableField(element, i, 'streetNumber')" *matCellDef="let element, let i = index">
+        <span *ngIf="currentEditField != 'streetNumber' || currentEditIndex != i">{{element.streetNumber}}</span>
+
+        <mat-form-field *ngIf="currentEditField == 'streetNumber' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
+					<input matInput (blur)="update(i, element)" placeholder="Street Number" [value]="element.streetNumber" [(ngModel)]="element.streetNumber">
+				</mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Street Column -->
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Street </th>
+      <td mat-cell (click)="enableField(element, i, 'street')" *matCellDef="let element, let i = index">
+        <span *ngIf="currentEditField != 'street' || currentEditIndex != i">{{element.street}}</span>
+
+        <mat-form-field *ngIf="currentEditField == 'street' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
+					<input matInput (blur)="update(i, element)" placeholder="Street" [value]="element.street" [(ngModel)]="element.street">
+				</mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- City Column -->
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+      <td mat-cell (click)="enableField(element, i, 'city')" *matCellDef="let element, let i = index">
+        <span *ngIf="currentEditField != 'city' || currentEditIndex != i">{{element.city}}</span>
+
+        <mat-form-field *ngIf="currentEditField == 'city' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
+					<input matInput (blur)="update(i, element)" placeholder="City" [value]="element.city" [(ngModel)]="element.city">
+				</mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- State Column -->
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+      <td mat-cell (click)="enableField(element, i, 'state')" *matCellDef="let element, let i = index">
+        <span *ngIf="currentEditField != 'state' || currentEditIndex != i">{{element.state}}</span>
+
+        <mat-form-field *ngIf="currentEditField == 'state' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
+					<input matInput (blur)="update(i, element)" placeholder="State" [value]="element.state" [(ngModel)]="element.state">
+				</mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Zip Column -->
+    <ng-container matColumnDef="zip">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Zip </th>
+      <td mat-cell (click)="enableField(element, i, 'zip')" *matCellDef="let element, let i = index">
+        <span *ngIf="currentEditField != 'zip' || currentEditIndex != i">{{element.zip}}</span>
+
+        <mat-form-field *ngIf="currentEditField == 'zip' && currentEditIndex == i" [style.width.%]="80" floatLabel="never">
+					<input matInput (blur)="update(i, element)" placeholder="Zip" [value]="element.zip" [(ngModel)]="element.zip">
+				</mat-form-field>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[20, 50, 100, 200]" showFirstLastButtons></mat-paginator>
+</div>

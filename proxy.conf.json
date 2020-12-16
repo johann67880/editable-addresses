@@ -1,0 +1,8 @@
+{
+  "0f1c6e64.s3.amazonaws.com/*": {
+    "target": "https://0f1c6e64.s3.amazonaws.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
