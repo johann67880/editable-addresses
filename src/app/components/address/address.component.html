@@ -59,8 +59,8 @@
       <td mat-cell (click)="enableField(element, i, 'state')" *matCellDef="let element, let i = index">
         <app-editable-cell
           [element]="element"
-          [property]="'State'"
-          [placeholder]="'state'"
+          [property]="'state'"
+          [placeholder]="'State'"
           [isEditing]="(currentEditField == 'state' && currentEditIndex == i)"
           (cellLostFocus)="update(i, element)">
         </app-editable-cell>
